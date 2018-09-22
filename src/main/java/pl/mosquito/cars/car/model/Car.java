@@ -1,4 +1,4 @@
-package pl.mosquito.cars.Car.model;
+package pl.mosquito.cars.car.model;
 
 import javax.persistence.*;
 
@@ -10,18 +10,23 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private double mileage;
+    private int engineSize;
     private double price;
     private String brand;
     private String model;
+    private String fuel;
 
     Car() {
     }
 
-    public Car(double mileage, double price, String brand, String model) {
+    public Car(double mileage, int engineSize, double price, String brand, String model, String fuel) {
+        //  super();
         this.mileage = mileage;
+        this.engineSize = engineSize;
         this.price = price;
         this.brand = brand;
         this.model = model;
+        this.fuel = fuel;
     }
 
     public long getId() {
@@ -64,9 +69,25 @@ public class Car {
         this.model = model;
     }
 
+    public int getEngineSize() {
+        return engineSize;
+    }
+
+    public void setEngineSize(int engineSize) {
+        this.engineSize = engineSize;
+    }
+
+    public String getFuel() {
+        return fuel;
+    }
+
+    public void setFuel(String fuel) {
+        this.fuel = fuel;
+    }
+
     @Override
     public String toString() {
-        return "Car{" +
+        return "car{" +
                 "id=" + id +
                 ", mileage=" + mileage +
                 ", price=" + price +
@@ -74,4 +95,5 @@ public class Car {
                 ", model='" + model + '\'' +
                 '}';
     }
+
 }

@@ -1,9 +1,9 @@
-package pl.mosquito.cars.Users.model;
+package pl.mosquito.cars.users.model;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -14,9 +14,14 @@ public class User {
     private String username;
     private String password;
 
-    public User(String username, String passord) {
+    User() {
+    }
+
+    ;
+
+    public User(String username, String password) {
         this.username = username;
-        this.password = passord;
+        this.password = password;
     }
 
     public long getId() {
