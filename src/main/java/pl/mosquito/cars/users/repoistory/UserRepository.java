@@ -6,5 +6,4 @@ import pl.mosquito.cars.users.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    // User findByUserName(String username);
 }
