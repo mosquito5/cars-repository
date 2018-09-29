@@ -25,14 +25,4 @@ public @interface FieldMatch {
 
     String second();
 
-    //for multiple times
-
-//    @Documented
-//    @Target({TYPE, ANNOTATION_TYPE})
-//    @interface List
-//    {
-//        FieldMatch value();
-//    }
-
-
 }
