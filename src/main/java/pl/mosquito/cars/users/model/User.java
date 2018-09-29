@@ -1,11 +1,14 @@
 package pl.mosquito.cars.users.model;
 
+import pl.mosquito.cars.CustomConstraint.FieldMatch;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
+@FieldMatch(first = "password", second = "spassword", message = "The passwords must match")
 public class User {
 
     @Id
@@ -13,15 +16,15 @@ public class User {
     private long id;
 
     @Column(nullable = false, unique = true)
-    @NotBlank
+    @NotBlank(message = "The user name must not be empty")
     private String username;
     @NotBlank
     private String password;
     @Email
-    @NotBlank
+    @NotBlank(message = "The email must not be empty")
     private String email;
     @Transient
-    @NotBlank
+    @NotBlank(message = "The confirm password must not be empty")
     private String spassword;
 
     public User() {
