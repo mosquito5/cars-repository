@@ -17,11 +17,9 @@ public class SignUpController {
         this.userRepo = userRepo;
     }
 
-    @PostMapping("/SignUp")
+    @PostMapping("/signup")
     public String newUser(@ModelAttribute User user) {
-        if(user.getPassword().equals(user.getSpassword())){
             userRepo.save(user);
-        }
         return "redirect:/";
     }
 }

@@ -13,15 +13,15 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/Add")
+    @GetMapping("/add")
     public String add() {
         return "add";
     }
 
-    @GetMapping("/SignUp")
+    @GetMapping("/signup")
     public String SignUp(Model model) {
         model.addAttribute("NewUserForm", new User());
 
-        return "SignUp";
+        return "signup";
     }
 }

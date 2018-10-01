@@ -30,6 +30,6 @@ public class AddController {
     @PostMapping("/save")
     public String saveCar(@ModelAttribute Car car) {
         carRepository.save(car);
-        return "redirect:Add";
+        return "redirect:add";
     }
 }

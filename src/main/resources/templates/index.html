@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Cars</title>
+    <style>
+        body {
+            background: #272822;
+            font-family: "Roboto", sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        a {
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 <h1>Cars</h1>
-<a th:href="@{/Add}">Add car</a>
-<a th:href="@{/SignIn}">Sign in</a>
-<a th:href="@{/SignUp}">Sign up</a>
+<a th:href="@{/add}">Add car</a>
+<a th:href="@{/signin}">Sign in</a>
+<a th:href="@{/signup}">Sign up</a>
 </body>
 </html>
