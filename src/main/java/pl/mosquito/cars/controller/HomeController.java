@@ -24,4 +24,12 @@ public class HomeController {
 
         return "signup";
     }
+
+
+    @GetMapping("/signin")
+    public String SignIn(Model model) {
+        model.addAttribute("SignInForm", new User());
+
+        return "signin";
+    }
 }

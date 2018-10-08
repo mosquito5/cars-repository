@@ -5,6 +5,8 @@ import pl.mosquito.cars.CustomConstraint.FieldMatch;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -26,15 +28,20 @@ public class User {
     @Transient
     @NotBlank(message = "The confirm password must not be empty")
     private String spassword;
-
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<UserRole> userRoles = new HashSet<>();
+    
     public User() {
     }
 
-    public User(String username, String password, String spassword, String email) {
+    public User(String username, String password, String spassword, String email,
+                Set<UserRole> userRoles) {
         this.username = username;
         this.password = password;
         this.spassword = spassword;
         this.email = email;
+        this.userRoles = userRoles;
+
     }
 
     public long getId() {
@@ -75,5 +82,13 @@ public class User {
 
     public void setSpassword(String spassword) {
         this.spassword = spassword;
+    }
+
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
     }
 }
