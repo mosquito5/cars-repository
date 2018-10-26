@@ -1,5 +1,7 @@
 package pl.mosquito.cars.car.model;
 
+import pl.mosquito.cars.users.model.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,8 +17,10 @@ public class Car {
     private String brand;
     private String model;
     private String fuel;
+    @OneToOne(mappedBy = "userCar")
+    private User user;
 
-    Car() {
+    public Car() {
     }
 
     public Car(double mileage, int engineSize, double price, String brand, String model, String fuel) {
@@ -83,6 +87,14 @@ public class Car {
 
     public void setFuel(String fuel) {
         this.fuel = fuel;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

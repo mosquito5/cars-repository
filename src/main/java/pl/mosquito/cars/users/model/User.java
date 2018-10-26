@@ -1,6 +1,7 @@
 package pl.mosquito.cars.users.model;
 
 import pl.mosquito.cars.CustomConstraint.FieldMatch;
+import pl.mosquito.cars.car.model.Car;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -30,7 +31,11 @@ public class User {
     private String spassword;
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<UserRole> userRoles = new HashSet<>();
-    
+    @OneToOne
+    @JoinColumn(name = "car_id")
+    private Car userCar;
+
+
     public User() {
     }
 
@@ -90,5 +95,13 @@ public class User {
 
     public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
+    }
+
+    public Car getUserCar() {
+        return userCar;
+    }
+
+    public void setUserCar(Car userCar) {
+        this.userCar = userCar;
     }
 }

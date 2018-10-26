@@ -4,10 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.mosquito.cars.car.model.Car;
 import pl.mosquito.cars.users.model.User;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
+
     @RequestMapping()
     public String home() {
         return "index";
@@ -31,5 +35,16 @@ public class HomeController {
         model.addAttribute("SignInForm", new User());
 
         return "signin";
+    }
+
+    @GetMapping("/advertise")
+    public String offers(Model model) {
+
+        List<String> fuels = List.of("Petrol", "Diesel", "LPG", "Electric");
+
+        model.addAttribute("AddCarForm", new Car());
+//        model.addAttribute("AddCarForm", fuels);
+
+        return "advertise";
     }
 }

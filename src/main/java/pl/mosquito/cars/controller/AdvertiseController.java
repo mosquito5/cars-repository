@@ -8,17 +8,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.mosquito.cars.car.model.Car;
 import pl.mosquito.cars.car.repository.CarRepository;
+import pl.mosquito.cars.users.model.User;
+import pl.mosquito.cars.users.repoistory.UserRepository;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
-public class AddController {
+public class AdvertiseController {
 
     private CarRepository carRepository;
+    private UserRepository userRepository;
+
 
     @Autowired
-    public AddController(CarRepository carRepository) {
+    public AdvertiseController(CarRepository carRepository, UserRepository userRepository) {
         this.carRepository = carRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/show")
@@ -28,8 +34,14 @@ public class AddController {
     }
 
     @PostMapping("/save")
-    public String saveCar(@ModelAttribute Car car) {
+    public String saveCar(@ModelAttribute Car car, Principal principal) {
+        System.out.println("user name: " + principal.getName());
+        User user = userRepository.findByUsername(principal.getName());
+        //temporary solution
+        user.setSpassword(user.getPassword());
+        user.setUserCar(car);
         carRepository.save(car);
+        userRepository.save(user);
         return "redirect:add";
     }
 }
