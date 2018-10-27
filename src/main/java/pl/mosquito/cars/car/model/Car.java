@@ -1,8 +1,8 @@
 package pl.mosquito.cars.car.model;
 
-import pl.mosquito.cars.users.model.User;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Cars")
@@ -17,14 +17,13 @@ public class Car {
     private String brand;
     private String model;
     private String fuel;
-    @OneToOne(mappedBy = "userCar")
-    private User user;
+    @NotBlank
+    private String userName;
 
     public Car() {
     }
 
     public Car(double mileage, int engineSize, double price, String brand, String model, String fuel) {
-        //  super();
         this.mileage = mileage;
         this.engineSize = engineSize;
         this.price = price;
@@ -89,12 +88,12 @@ public class Car {
         this.fuel = fuel;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Override

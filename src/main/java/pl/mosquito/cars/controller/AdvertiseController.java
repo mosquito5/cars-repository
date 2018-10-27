@@ -35,13 +35,10 @@ public class AdvertiseController {
 
     @PostMapping("/save")
     public String saveCar(@ModelAttribute Car car, Principal principal) {
-        System.out.println("user name: " + principal.getName());
         User user = userRepository.findByUsername(principal.getName());
-        //temporary solution
-        user.setSpassword(user.getPassword());
-        user.setUserCar(car);
+        car.setUserName(user.getUsername());
         carRepository.save(car);
         userRepository.save(user);
-        return "redirect:add";
+        return "redirect:/";
     }
 }

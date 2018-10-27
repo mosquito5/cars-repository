@@ -31,10 +31,6 @@ public class User {
     private String spassword;
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<UserRole> userRoles = new HashSet<>();
-    @OneToOne
-    @JoinColumn(name = "car_id")
-    private Car userCar;
-
 
     public User() {
     }
@@ -97,11 +93,4 @@ public class User {
         this.userRoles = userRoles;
     }
 
-    public Car getUserCar() {
-        return userCar;
-    }
-
-    public void setUserCar(Car userCar) {
-        this.userCar = userCar;
-    }
 }

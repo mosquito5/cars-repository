@@ -43,7 +43,6 @@ public class HomeController {
         List<String> fuels = List.of("Petrol", "Diesel", "LPG", "Electric");
 
         model.addAttribute("AddCarForm", new Car());
-//        model.addAttribute("AddCarForm", fuels);
 
         return "advertise";
     }
