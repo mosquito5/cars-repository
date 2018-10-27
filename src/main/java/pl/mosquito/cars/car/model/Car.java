@@ -2,7 +2,6 @@ package pl.mosquito.cars.car.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Cars")
@@ -10,11 +9,14 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private long id;
     private double mileage;
     private int engineSize;
     private double price;
+    @NotBlank(message = "The brand must be not empty")
     private String brand;
+    @NotBlank(message = "The model must be not empty")
     private String model;
     private String fuel;
     @NotBlank
