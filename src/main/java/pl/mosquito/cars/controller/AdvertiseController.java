@@ -35,10 +35,11 @@ public class AdvertiseController {
 
     @PostMapping("/save")
     public String saveCar(@ModelAttribute Car car, Principal principal) {
-        User user = userRepository.findByUsername(principal.getName());
-        car.setUserName(user.getUsername());
+//        User user = userRepository.findByUsername(principal.getName());
+//        car.setUserName(user.getUsername());
+        car.setUserName(principal.getName());
         carRepository.save(car);
-        userRepository.save(user);
+//        userRepository.save(user);
         return "redirect:/";
     }
 }
