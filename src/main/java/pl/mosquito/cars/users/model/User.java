@@ -46,6 +46,17 @@ public class User {
 
     }
 
+    public User(String username, String password, String spassword, String email/*,
+                Set<UserRole> userRoles*/) {
+        this.username = username;
+        this.password = password;
+        this.spassword = spassword;
+        this.email = email;
+//        this.userRoles = userRoles;
+    }
+
+
+
     public long getId() {
         return id;
     }
@@ -94,4 +105,15 @@ public class User {
         this.userRoles = userRoles;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", spassword='" + spassword + '\'' +
+                ", userRoles=" + userRoles +
+                '}';
+    }
 }
