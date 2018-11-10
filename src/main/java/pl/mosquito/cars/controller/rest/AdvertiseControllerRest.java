@@ -14,14 +14,10 @@ import java.util.List;
 @RequestMapping(value = RestURIConstants.ADVERTISE_API)
 public class AdvertiseControllerRest {
 
-    private CarRepository carRepository;
-    private UserRepository userRepository;
-
     @Autowired
-    public AdvertiseControllerRest(CarRepository carRepository, UserRepository userRepository) {
-        this.carRepository = carRepository;
-        this.userRepository = userRepository;
-    }
+    private CarRepository carRepository;
+    @Autowired
+    private UserRepository userRepository;
 
 
     @RequestMapping(value = RestURIConstants.ADVERTISE_API_GET_CARS)
