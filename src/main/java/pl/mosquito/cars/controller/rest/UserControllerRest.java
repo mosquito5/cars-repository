@@ -8,7 +8,7 @@ import pl.mosquito.cars.users.model.User;
 
 @RestController
 @RequestMapping(value = RestURIConstants.NEWUSER_API)
-public class NewUserRest {
+public class UserControllerRest {
 
     @Autowired
     private UserService userService;
@@ -28,6 +28,8 @@ public class NewUserRest {
         }
         return "Creating new user successful\n";
     }
+
+
 
 }
 
