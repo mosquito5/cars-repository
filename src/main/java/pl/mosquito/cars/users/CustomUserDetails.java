@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import pl.mosquito.cars.users.model.User;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CustomUserDetails implements UserDetails {

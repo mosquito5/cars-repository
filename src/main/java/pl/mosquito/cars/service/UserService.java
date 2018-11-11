@@ -14,8 +14,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private UserRoleRepository userRoleRepository;
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public void addWithDefaultRole(User user) {

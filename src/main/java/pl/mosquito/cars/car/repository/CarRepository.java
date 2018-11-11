@@ -5,11 +5,12 @@ import org.springframework.stereotype.Repository;
 import pl.mosquito.cars.car.model.Car;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
-    List<Car> findByBrand(String brand);
-    List<Car> findByModel(String model);
-    List<Car> findByUserName(String user);
-    List<Car> findByFuel(String fuel);
+  Optional<List<Car>> findByBrand(String brand);
+  Optional<List<Car>> findByModel(String model);
+  Optional<List<Car>> findByUserName(String user);
+  Optional<List<Car>> findByFuel(String fuel);
 }

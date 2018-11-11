@@ -1,7 +1,9 @@
 package pl.mosquito.cars.controller.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.mosquito.cars.car.model.Car;
 import pl.mosquito.cars.car.repository.CarRepository;
@@ -9,6 +11,7 @@ import pl.mosquito.cars.users.repoistory.UserRepository;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = RestURIConstants.ADVERTISE_API)
@@ -30,34 +33,48 @@ public class AdvertiseControllerRest {
 
     @RequestMapping(value = RestURIConstants.ADVERTISE_API_GET_CARS_BY_MODEL)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Car> getCarsByModel(@RequestParam(value = "model", required = true) String model) {
-        List<Car> cars = carRepository.findByModel(model);
+    public ResponseEntity<List<Car>> getCarsByModel(@RequestParam(value = "model", required = true) String model) {
+        Optional<List<Car>> cars = carRepository.findByModel(model);
 
-        return cars;
+        if(cars.isPresent())
+            return new ResponseEntity<>(cars.get(), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(cars.get(), HttpStatus.NOT_FOUND);
+
     }
 
     @RequestMapping(value = RestURIConstants.ADVERTISE_API_GET_CARS_BY_USER_NAME)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Car> getCarsByUserName(@RequestParam(value = "userName", required = true) String userName) {
-        List<Car> cars = carRepository.findByUserName(userName);
+    public ResponseEntity<List<Car>> getCarsByUserName(@RequestParam(value = "userName", required = true) String userName) {
 
-        return cars;
+        Optional<List<Car>> cars = carRepository.findByUserName(userName);
+
+        if(cars.isPresent())
+            return new ResponseEntity<>(cars.get(), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(cars.get(), HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping(value = RestURIConstants.ADVERTISE_API_GET_CARS_BY_FUEL)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Car> getCarsByFuel(@RequestParam(value = "fuel", required = true) String fuel) {
-        List<Car> cars = carRepository.findByFuel(fuel);
+    public ResponseEntity<List<Car>> getCarsByFuel(@RequestParam(value = "fuel", required = true) String fuel) {
+        Optional<List<Car>> cars = carRepository.findByFuel(fuel);
 
-        return cars;
+        if(cars.isPresent())
+            return new ResponseEntity<>(cars.get(), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(cars.get(), HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping(value = RestURIConstants.ADVERTISE_API_GET_CARS_BY_BRAND)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Car> getCarsByBrand(@RequestParam(value = "fuel", required = true) String brand) {
-        List<Car> cars = carRepository.findByBrand(brand);
+    public ResponseEntity<List<Car>> getCarsByBrand(@RequestParam(value = "fuel", required = true) String brand) {
+        Optional<List<Car>> cars = carRepository.findByBrand(brand);
 
-        return cars;
+        if(cars.isPresent())
+            return new ResponseEntity<>(cars.get(), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(cars.get(), HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping(value = RestURIConstants.ADVERTISE_API_SAVE_CAR)

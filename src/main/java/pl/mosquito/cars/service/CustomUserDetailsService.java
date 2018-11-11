@@ -10,6 +10,7 @@ import pl.mosquito.cars.users.model.User;
 import pl.mosquito.cars.users.repoistory.UserRepository;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -20,11 +21,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if(Objects.isNull(user))
+        Optional<User> user = userRepository.findByUsername(username);
+        if(user.isEmpty())
             throw new UsernameNotFoundException(username);
 
-        return new CustomUserDetails(user);
+        return new CustomUserDetails(user.get());
     }
 
 }
