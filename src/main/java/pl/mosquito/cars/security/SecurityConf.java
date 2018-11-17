@@ -8,9 +8,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.mosquito.cars.service.CustomUserDetailsService;
+
+import static pl.mosquito.cars.controller.rest.RestURIConstants.NEWUSER_API;
 
 
 @Configuration
@@ -22,15 +25,12 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity.authorizeRequests().antMatchers("/").permitAll();
-        httpSecurity
+
+        httpSecurity.csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/", "/signup", "/api/newUser/add").permitAll()
-                    .anyRequest().authenticated()
-                .and()
-                    .formLogin()
-                    .loginPage("/signin")
-                        .permitAll();
+                .antMatchers(NEWUSER_API).permitAll()
+                .antMatchers().hasRole("USER").anyRequest().authenticated().
+                and().httpBasic().realmName("TEST");
     }
 
     @Override
