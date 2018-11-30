@@ -14,10 +14,11 @@ public class RestURIConstants {
 
 
     /**
-     * New User URI Constants
+     * User URI Constants
      */
 
-    public static final String NEWUSER_API = "/api/newUser";
-    public static final String NEWUSER_API_ADD = "/add";
+    public static final String USER_API = "/api/User";
+    public static final String USER_API_ADD = "/add";
+    public static final String USER_API_RESETPASS = "/resetpass";
 
 }

@@ -3,6 +3,7 @@ package pl.mosquito.cars.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.mosquito.cars.security.PassGen;
 import pl.mosquito.cars.users.model.User;
 import pl.mosquito.cars.users.model.UserRole;
 import pl.mosquito.cars.users.repoistory.UserRepository;
@@ -23,5 +24,16 @@ public class UserService {
         user.setPassword(passwordHash);
         user.setSpassword(passwordHash);
         userRepository.save(user);
+    }
+
+    public String resetPassword(User user) {
+        PassGen psgn = new PassGen();
+        String pass = psgn.getPass();
+        String passwordHash = passwordEncoder.encode(pass);
+        user.setPassword(passwordHash);
+        user.setSpassword(passwordHash);
+        userRepository.save(user);
+
+        return pass;
     }
 }

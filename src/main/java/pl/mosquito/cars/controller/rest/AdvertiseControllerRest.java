@@ -68,7 +68,7 @@ public class AdvertiseControllerRest {
 
     @RequestMapping(value = RestURIConstants.ADVERTISE_API_GET_CARS_BY_BRAND)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Car>> getCarsByBrand(@RequestParam(value = "fuel", required = true) String brand) {
+    public ResponseEntity<List<Car>> getCarsByBrand(@RequestParam(value = "brand", required = true) String brand) {
         Optional<List<Car>> cars = carRepository.findByBrand(brand);
 
         if(cars.isPresent())
