@@ -36,4 +36,11 @@ public class UserService {
 
         return pass;
     }
+
+    public void changePassowrd(User user, String pass) {
+        String passwordHash = passwordEncoder.encode(pass);
+        user.setPassword(passwordHash);
+        user.setSpassword(passwordHash);
+        userRepository.save(user);
+    }
 }

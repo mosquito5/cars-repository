@@ -20,5 +20,6 @@ public class RestURIConstants {
     public static final String USER_API = "/api/User";
     public static final String USER_API_ADD = "/add";
     public static final String USER_API_RESETPASS = "/resetpass";
+    public static final String USER_API_CHANGEPASS = "/changepass";
 
 }

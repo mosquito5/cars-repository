@@ -13,6 +13,8 @@ import pl.mosquito.cars.service.UserService;
 import pl.mosquito.cars.users.model.User;
 import pl.mosquito.cars.users.repoistory.UserRepository;
 
+import java.security.Principal;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -30,6 +32,8 @@ public class UserControllerRest {
 
     @Autowired
     private TemplateEngine templateEngine;
+
+    //create new user
 
     @RequestMapping(value = RestURIConstants.USER_API_ADD)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -55,6 +59,7 @@ public class UserControllerRest {
         return new ResponseEntity<>("Creating new user successful\n", HttpStatus.OK);
     }
 
+    //reset password
     @RequestMapping(value = RestURIConstants.USER_API_RESETPASS)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> resetPassword(@RequestParam(value = "email", required = true) String email) {
@@ -73,6 +78,25 @@ public class UserControllerRest {
         }
         else
             return new ResponseEntity<>("Reset password failed\n", HttpStatus.BAD_REQUEST);
+    }
+
+
+    //change password
+    @RequestMapping(value = RestURIConstants.USER_API_CHANGEPASS)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> changePassword(@RequestParam Map<String, String> params, Principal principal) {
+
+        String npass = params.get("npass");
+        String odlpass = params.get("oldpass");
+        String odlnpass1 = params.get("odlnpass1");
+
+        if(odlpass.matches(odlnpass1)) {
+            Optional<User> user = userRepository.findByUsername(principal.getName());
+            userService.changePassowrd(user.get(), npass);
+            return new ResponseEntity<>("Changing password success\n", HttpStatus.OK);
+        }
+        else
+            return new ResponseEntity<>("Changing password failed\n", HttpStatus.BAD_REQUEST);
     }
 }
 
