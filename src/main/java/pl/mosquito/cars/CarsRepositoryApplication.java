@@ -15,13 +15,6 @@ public class CarsRepositoryApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext ctx = SpringApplication.run(CarsRepositoryApplication.class, args);
 
-//        Car car = new Car(1920000, 1600, 32000, "Opel", "Vectra", "petrol");
-//
-//        CarRepository carRepo = ctx.getBean(CarRepository.class);
-//        carRepo.save(car);
-//
-//        ctx.close();
-
     }
 }
 

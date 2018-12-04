@@ -1,4 +1,4 @@
-package pl.mosquito.cars.controller.rest;
+package pl.mosquito.cars.controller.rest.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import pl.mosquito.cars.controller.rest.RestURIConstants;
 import pl.mosquito.cars.email.Email;
 import pl.mosquito.cars.service.UserService;
 import pl.mosquito.cars.users.model.User;
@@ -34,7 +35,6 @@ public class UserControllerRest {
     private TemplateEngine templateEngine;
 
     //create new user
-
     @RequestMapping(value = RestURIConstants.USER_API_ADD)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createNewUser(@RequestBody User user, Model model) {

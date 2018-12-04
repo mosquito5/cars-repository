@@ -1,4 +1,4 @@
-package pl.mosquito.cars.controller.rest;
+package pl.mosquito.cars.controller.rest.advertise;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.mosquito.cars.car.model.Car;
 import pl.mosquito.cars.car.repository.CarRepository;
+import pl.mosquito.cars.controller.rest.RestURIConstants;
 import pl.mosquito.cars.users.repoistory.UserRepository;
 
 import java.security.Principal;

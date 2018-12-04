@@ -1,7 +1,6 @@
 package pl.mosquito.cars.users.model;
 
 import pl.mosquito.cars.CustomConstraint.FieldMatch;
-import pl.mosquito.cars.car.model.Car;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
