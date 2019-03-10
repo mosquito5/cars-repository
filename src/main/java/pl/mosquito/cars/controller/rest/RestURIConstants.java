@@ -22,4 +22,13 @@ public class RestURIConstants {
     public static final String USER_API_RESETPASS = "/resetpass";
     public static final String USER_API_CHANGEPASS = "/changepass";
 
+    /**
+     * Admin URI Constants
+     */
+
+    public static final String ADMIN_API="/api/admin";
+    public static final String ADMIN_API_REMOVE_ADV_BY_ID="/removeAdvById";
+    public static final String ADMIN_API_REMOVE_ADV_BY_USR="/removeAdvByUSR";
+    public static final String ADMIN_API_USER_BY_ID="/removeUsrById";
+
 }

@@ -12,14 +12,24 @@ import pl.mosquito.cars.users.repoistory.UserRoleRepository;
 @Service
 public class UserService {
     private static final String DEFAULT_ROLE = "ROLE_USER";
+    private static final String ADMIN_ROLE = "ROLE_ADMIN";
+
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     public void addWithDefaultRole(User user) {
-        UserRole defaultUser = new UserRole(DEFAULT_ROLE);
-        user.getUserRoles().add(defaultUser);
+        addWithRole(user, DEFAULT_ROLE);
+    }
+
+    public void addWithAdminRole(User user) {
+        addWithRole(user, ADMIN_ROLE);
+    }
+
+    private void addWithRole(User user, String role) {
+        UserRole userRole = new UserRole(role);
+        user.getUserRoles().add(userRole);
         String passwordHash = passwordEncoder.encode(user.getPassword());
         user.setPassword(passwordHash);
         user.setSpassword(passwordHash);

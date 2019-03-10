@@ -45,15 +45,13 @@ public class User {
 
     }
 
-    public User(String username, String password, String spassword, String email/*,
-                Set<UserRole> userRoles*/) {
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
-        this.spassword = spassword;
+        this.spassword = password;
         this.email = email;
-//        this.userRoles = userRoles;
-    }
 
+    }
 
 
     public long getId() {

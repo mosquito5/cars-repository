@@ -35,8 +35,7 @@ public class UserControllerRest {
     private TemplateEngine templateEngine;
 
     //create new user
-    @RequestMapping(value = RestURIConstants.USER_API_ADD)
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = RestURIConstants.USER_API_ADD, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createNewUser(@RequestBody User user, Model model) {
 
         Context emailContext = new Context();
@@ -60,8 +59,7 @@ public class UserControllerRest {
     }
 
     //reset password
-    @RequestMapping(value = RestURIConstants.USER_API_RESETPASS)
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = RestURIConstants.USER_API_RESETPASS, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> resetPassword(@RequestParam(value = "email", required = true) String email) {
         Optional<User> user = userRepository.findByEmail(email);
 
@@ -82,8 +80,7 @@ public class UserControllerRest {
 
 
     //change password
-    @RequestMapping(value = RestURIConstants.USER_API_CHANGEPASS)
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = RestURIConstants.USER_API_CHANGEPASS,consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> changePassword(@RequestParam Map<String, String> params, Principal principal) {
 
         String npass = params.get("npass");
